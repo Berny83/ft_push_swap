@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 18:00:56 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/10 15:49:43 by aagrivan         ###   ########.fr       */
+/*   Created: 2020/11/08 22:46:25 by aagrivan          #+#    #+#             */
+/*   Updated: 2020/11/10 21:06:16 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_struct.h"
 #include "push_swap.h"
 
-static t_data			initiate()
+static t_bool	is_sorted(t_data *d)
 {
-	t_data				new;
-
-	ft_memset(&new, 0, sizeof(t_data));
-	return (new);
+	t_elem		*curr;
+	
+	curr = d->a.first;
+	if (!d->a.first || d->b.first)
+		return (false);
+	while (curr && curr->next)
+	{
+		if (curr->num > curr->next->num)
+			return (false);
+		curr = curr->next;
+	}
+	return (true);
 }
 
-int				main(int ac, char **av)
+void			sort(t_data *d)
 {
-	t_data		d;
-	
-	if (ac >= 2)
+	while (!is_sorted(d))
 	{
-		d = initiate();
-		validate(&d, av);
-		sort(&d);
-		clean(&d);
+		if (d->a.size <= 5)
+			sort_5(d);
+		else
+			sort_100_500(d);
 	}
-	else
-		ft_printf(ERR);
-	return (0);
 }
