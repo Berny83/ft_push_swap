@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 17:27:17 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/10 15:51:21 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:34:29 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,23 @@ void		clean(t_data *d)
 		curr = curr->next;
 		free(d->a.last);
 	}
+	d->a.first = NULL;
+	d->a.last = NULL;
 	if (d->elems)
+	{
 		free(d->elems);
+		d->elems = NULL;
+	}
+	if (d->a.ch || d->b.ch)
+		clean_chunk(d);
+}
+
+void		clean_chunk(t_data *d)
+{
+	free(d->a.ch);
+	d->a.ch = NULL;
+	free(d->b.ch);
+	d->b.ch = NULL;
 }
 
 void		ft_error(t_data *d, char **s)

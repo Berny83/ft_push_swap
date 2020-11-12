@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:55:24 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/09 20:45:24 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:38:36 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,27 @@ static void		r_reverse(t_stack *tmp)
 	}
 }
 
-void			rra(t_stack *a, char c)
+int				rra(t_data *d, char c)
 {
-	r_reverse(a);
+	r_reverse(&d->a);
 	if (c == 'a')
 		write(1, "rra\n", 4);
+	return (1);
 }
 
-void			rrb(t_stack *b, char c)
+int				rrb(t_data *d, char c)
 {
-	r_reverse(b);
+	r_reverse(&d->b);
 	if (c == 'b')
 		write(1, "rrb\n", 4);
+	return (1);
 }
 
-void			rrr(t_stack *a, t_stack *b)
+int				rrr(t_data *d, char c)
 {
-	rra(a, 0);
-	rrb(b, 0);
-	
-	write(1, "rrr\n", 4);
+	rra(d, c);
+	rrb(d, c);
+	if (c == 'c')
+		write(1, "rrr\n", 4);
+	return (1);
 }

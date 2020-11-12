@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 10:33:42 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/09/20 13:16:31 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 22:18:56 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len)
 		slen = ft_strlen(s);
 		if (start > slen)
 			return (NULL);
-		if (!(res = (char *)malloc(sizeof(char) * len + 1)))
+		if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
 			return (NULL);
 		while (s[start] != '\0' && i < len)
 		{

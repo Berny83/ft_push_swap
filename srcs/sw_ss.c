@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:34:47 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/09 20:07:59 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:38:02 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,27 @@ static void		swap(t_stack *tmp)
 	}
 }
 
-void			sa(t_stack *a, char c)
+int				sa(t_data *d, char c)
 {
-	swap(a);
+	swap(&d->a);
 	if (c == 'a')
 		write(1, "sa\n", 3);
+	return (1);
 }
 
-void			sb(t_stack *b, char c)
+int				sb(t_data *d, char c)
 {
-	swap(b);
+	swap(&d->b);
 	if (c == 'b')
 		write(1, "sb\n", 3);
+	return (1);
 }
 
-void			ss(t_stack *a, t_stack *b)
+int				ss(t_data *d, char c)
 {
-	sa(a, 0);
-	sb(b, 0);
-	write(1, "ss\n", 3);
+	sa(d, c);
+	sb(d, c);
+	if (c == 'c')
+		write(1, "ss\n", 3);
+	return (1);
 }

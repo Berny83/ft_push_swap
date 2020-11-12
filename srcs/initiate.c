@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   initiate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 22:46:25 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 20:05:14 by aagrivan         ###   ########.fr       */
+/*   Created: 2020/11/12 21:40:33 by aagrivan          #+#    #+#             */
+/*   Updated: 2020/11/12 21:42:04 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_struct.h"
 #include "push_swap.h"
 
-t_bool			is_sorted(t_data *d)
+t_data			initiate(void)
 {
-	t_elem		*curr;
-	
-	curr = d->a.first;
-	if (!d->a.first || d->b.first)
-		return (false);
-	while (curr && curr->next)
-	{
-		if (curr->num > curr->next->num)
-			return (false);
-		curr = curr->next;
-	}
-	return (true);
+	t_data		new;
+
+	ft_memset(&new, 0, sizeof(t_data));
+	return (new);
 }
 
-void			sort(t_data *d)
+t_bool			initiate_chunk(t_stack *tmp)
 {
-	while (!is_sorted(d))
+	t_chunk		*new;
+	
+	if (!tmp->ch || tmp->ch->size)
 	{
-		if (d->a.size <= 5)
-			sort_5(d);
-		else
-			sort_100_500(d);
+		if (!(new = (t_chunk *)malloc(sizeof(t_chunk))))
+			return (false);
+		ft_memset(new, 0, sizeof(t_chunk));
+		new->next = tmp->ch;
+		tmp->ch = new;
 	}
+	return (true);
 }

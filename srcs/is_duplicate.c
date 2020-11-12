@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:57:42 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/10 16:00:20 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 20:52:02 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,3 @@ void			parse_duplicate(t_data *d)
 	if (is_duplicate(d))
 		ft_exit(d, EXIT_FAILURE);
 }
-// int pw_is_sorted(t_array *v)
-// {
-// 	int	i;
-
-// 	if (v->size == 0)
-// 		return (1);
-// 	i = v->size - 1;
-// 	while (i > 0)
-// 	{
-// 		if (ARRAY_DATA(v, i - 1) < ARRAY_DATA(v, i))
-// 			return (0);
-// 		i--;
-// 	}
-// 	return (1);
-// }

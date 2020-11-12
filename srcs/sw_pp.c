@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:55:22 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/10 15:48:20 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/12 19:14:24 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,28 @@ int				push(t_stack *fi, t_stack *sec, char c)
 	if (fi)
 	{
 		if (!del_top_element(fi))
+		{
 			fi->first = NULL;
+			fi->last = NULL;
+		}
 		if (!add_top_element(sec, tmp))
 			return (0);
 	}
 	(c == 'b') ? ft_putendl("pb") : ft_putendl("pa");
+	return (1);
+}
+
+int				push_pr(t_data *d, char c)
+{
+	if (c == 'b')
+	{
+		if (!push(&d->a, &d->b, c))
+			ft_exit(d, EXIT_FAILURE);
+	}
+	else
+	{
+		if (!push(&d->b, &d->a, c))
+			ft_exit(d, EXIT_FAILURE);
+	}
 	return (1);
 }
