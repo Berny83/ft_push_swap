@@ -6,14 +6,14 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 19:46:17 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/13 11:33:55 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 18:59:44 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_struct.h"
 #include "push_swap.h"
 
-static int	find_smallest(t_elem *first)
+int			find_smallest(t_elem *first)
 {
 	int		small;
 
@@ -27,17 +27,33 @@ static int	find_smallest(t_elem *first)
 	return (small);
 }
 
-static int	find_moves_b(t_stack *b, int small)
+int			find_moves_b_last(t_stack *b, int small)
+{
+	t_elem	*lst;
+	int		j;
+
+	j = 0;
+	lst = b->last;
+	while (b->last)
+	{
+		if (b->last->num == small)
+			break ;
+		j++;
+		b->last = b->last->prev;
+	}
+	b->last = lst;
+	return (j);
+}
+
+int			find_moves_b(t_stack *b, int small)
 {
 	int		i;
 	int		j;
 	t_elem	*fi;
-	t_elem	*lst;
 
 	i = 0;
 	j = 0;
 	fi = b->first;
-	lst = b->last;
 	while (b->first)
 	{
 		if (b->first->num == small)
@@ -46,17 +62,8 @@ static int	find_moves_b(t_stack *b, int small)
 		b->first = b->first->next;
 	}
 	if (i != 0)
-	{
-		while (b->last)
-		{
-			if (b->last->num == small)
-				break ;
-			j++;
-			b->last = b->last->prev;
-		}
-	}
+		j = find_moves_b_last(b, small);
 	b->first = fi;
-	b->last = lst;
 	if (i <= j)
 		return (1);
 	return (0);

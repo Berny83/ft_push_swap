@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:55:22 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 19:14:24 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:11:12 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		add_top_element(t_stack *tmp, int n)
 {
 	t_elem		*new;
-	
+
 	if (!(new = (t_elem*)malloc(sizeof(t_elem))))
 		return (0);
 	new->num = n;
@@ -34,7 +34,7 @@ static int		add_top_element(t_stack *tmp, int n)
 static int		del_top_element(t_stack *tmp)
 {
 	t_elem		*del;
-	
+
 	if (tmp)
 	{
 		del = tmp->first;
@@ -65,18 +65,19 @@ int				push(t_stack *fi, t_stack *sec, char c)
 		if (!add_top_element(sec, tmp))
 			return (0);
 	}
-	(c == 'b') ? ft_putendl("pb") : ft_putendl("pa");
+	(c == 'b') ? ft_putendl("pb") : 0;
+	(c == 'a') ? ft_putendl("pa") : 0;
 	return (1);
 }
 
 int				push_pr(t_data *d, char c)
 {
-	if (c == 'b')
+	if (c == 'b' || c == 'e')
 	{
 		if (!push(&d->a, &d->b, c))
 			ft_exit(d, EXIT_FAILURE);
 	}
-	else
+	else if (c == 'a' || c == 'd')
 	{
 		if (!push(&d->b, &d->a, c))
 			ft_exit(d, EXIT_FAILURE);

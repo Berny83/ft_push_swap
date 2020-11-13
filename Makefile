@@ -6,7 +6,7 @@
 #    By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/03 18:03:52 by aagrivan          #+#    #+#              #
-#    Updated: 2020/11/12 21:40:30 by aagrivan         ###   ########.fr        #
+#    Updated: 2020/11/13 16:41:34 by aagrivan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	initiate.c\
 		sort_5.c\
 		sort_100_500.c\
 		chunk_a.c\
+		chunk_a2.c\
 		chunk_b.c\
 		sw_pp.c\
 		sw_rr.c\

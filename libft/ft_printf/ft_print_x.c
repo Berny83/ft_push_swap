@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 16:11:26 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/03 14:37:27 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:35:02 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void				width_fm(t_printf *f, int length, int res)
 
 void					ft_print_xint(t_printf *f)
 {
-	__uintmax_t			res;
+	uintmax_t			res;
 	unsigned int		length;
 	char				*s;
 

@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 18:00:56 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 21:40:50 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:23:49 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int				main(int ac, char **av)
 {
 	t_data		d;
-	
+
 	if (ac >= 2)
 	{
 		d = initiate();

@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 15:52:25 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/13 11:58:14 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:36:11 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,23 @@ static int		size_chunk(int size)
 		return (5);
 	else
 		return (10);
-}//500-9-10
+}
 
 static void		a_chunk(t_stack *a, t_elem **elems, int div)
 {
 	a->ch->split = div;
-	a->ch->size = a->size; //100
-	a->ch->pos_median = a->ch->size / a->ch->split; //20
-	a->ch->val_median = elems[a->ch->pos_median]->num; //elems[20] = 21
+	a->ch->size = a->size;
+	a->ch->pos_median = a->ch->size / a->ch->split;
+	a->ch->val_median = elems[a->ch->pos_median]->num;
 	a->ch->lll = 0;
 }
-// 0-19 20-39 40-59 60-79 80-99
+
+void			new_a_chunk(t_chunk *a)
+{
+	a->lll = 1;
+	a->size -= (a->size / a->split);
+	a->split--;
+}
 
 t_bool			sorted_chunk(t_data *d)
 {
@@ -52,14 +58,10 @@ t_bool			sorted_chunk(t_data *d)
 void			sort_100_500(t_data *d)
 {
 	int			div;
-	int	border;
+	int			border;
 
 	border = d->elems[0]->num;
 	div = size_chunk(d->a.size);
-	if (!initiate_chunk(&d->a))
-		ft_exit(d, EXIT_FAILURE);
-	if (!initiate_chunk(&d->b))
-		ft_exit(d, EXIT_FAILURE);
 	a_chunk(&d->a, d->elems, div);
 	while (d->a.ch->size)
 	{

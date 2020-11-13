@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 18:01:02 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/13 11:33:37 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 19:00:06 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ void		new_a_chunk(t_chunk *a);
 void		redo_chunks(t_chunk *a, t_chunk *b, t_elem **elems);
 t_bool		initiate_chunk(t_stack *tmp);
 void		solve_quarters_a(t_data *d, int border);
+void		middle_chunk_b(t_chunk *b, t_chunk *a, t_elem **elems);
 void		solve_quarters_b(t_data *d);
 int			find_moves_a(t_stack *tmp, int median, int border);
 int			make_moves_a(t_data *d, int border, char c);
 void		make_moves_b(t_data *d, int small, char c);
 void		check_b_nums(t_data *d);
+int			find_smallest(t_elem *first);
+int			find_moves_b(t_stack *b, int small);
+int			find_moves_b_last(t_stack *b, int small);
 
 int			sa(t_data *d, char c);
 int			sb(t_data *d, char c);

@@ -6,47 +6,29 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 21:02:30 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/13 11:49:07 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:44:41 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_struct.h"
 #include "push_swap.h"
 
-static void	middle_chunk_b(t_chunk *b, t_chunk *a, t_elem **elems)
+static int	find_moves_a_last(t_stack *tmp, int median, int border)
 {
-	b->split = a->split; //4 //3 //2 //1
-	b->size = a->size / b->split; //20 //20 //20 //20
-	if (a->lll == 0)
+	t_elem	*lst;
+	int		j;
+
+	j = 0;
+	lst = tmp->last;
+	while (tmp->last)
 	{
-		b->pos_median = a->pos_median - (b->size / 2); //10 //20 //30 //40
-		b->val_median = elems[b->pos_median]->num;  //elems[10] = 21//elems[20] = 40 //60
+		if (tmp->last->num < median && tmp->last->num >= border)
+			break ;
+		j++;
+		tmp->last = tmp->last->prev;
 	}
-}
-
-void		new_a_chunk(t_chunk *a)
-{
-	// if (a->lll)
-	// {
-	// 	a->pos_median += (a->size / a->split);
-	// 	a->val_median = elems[a->pos_median]->num;
-	// 	a->val_median++;
-	// } //elems[40] = 40 //elems[60] = 60
-	a->lll = 1;
-	a->size -= (a->size / a->split); //80 //60 //40 //20
-	a->split--; //4 //3 //2
-}
-
-void		redo_chunks(t_chunk *a, t_chunk *b, t_elem **elems)
-{
-	a->pos_median += b->size; // 40 + 60/3=60//100 скорее всего еще минус 1
-	if (a->lll)
-	{
-		a->val_median = elems[a->pos_median - 1]->num;
-		a->val_median++;
-	} //elems[40] = 40 //elems[60] = 60
-	b->pos_median = a->pos_median - (b->size / 2); //10 //20 //30 //40
-	b->val_median = elems[b->pos_median]->num;  //elems[10] = 21//elems[20] = 40 //60
+	tmp->last = lst;
+	return (j);
 }
 
 int			find_moves_a(t_stack *tmp, int median, int border)
@@ -54,12 +36,10 @@ int			find_moves_a(t_stack *tmp, int median, int border)
 	int		i;
 	int		j;
 	t_elem	*fi;
-	t_elem	*lst;
 
 	i = 0;
 	j = 0;
 	fi = tmp->first;
-	lst = tmp->last;
 	while (tmp->first)
 	{
 		if (tmp->first->num < median && tmp->first->num >= border)
@@ -68,17 +48,8 @@ int			find_moves_a(t_stack *tmp, int median, int border)
 		tmp->first = tmp->first->next;
 	}
 	if (i != 0)
-	{
-		while (tmp->last)
-		{
-			if (tmp->last->num < median && tmp->last->num >= border)
-				break ;
-			j++;
-			tmp->last = tmp->last->prev;
-		}
-	}
+		j = find_moves_a_last(tmp, median, border);
 	tmp->first = fi;
-	tmp->last = lst;
 	if (i <= j)
 		return (1);
 	return (0);
@@ -143,5 +114,3 @@ void		solve_quarters_a(t_data *d, int border)
 			i += make_moves_a(d, border, 'l');
 	}
 }
-// make smth with remains -кажется просто последний чанк больше остальных получается без
-// всяких остатков

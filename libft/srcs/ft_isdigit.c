@@ -6,11 +6,13 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:00:09 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/05/21 20:35:23 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:03:27 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isdigit(int c)
 {
+	if (!c)
+		return (0);
 	return (c >= '0' && c <= '9');
 }

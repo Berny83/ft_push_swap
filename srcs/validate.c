@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 19:06:53 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/10 15:14:45 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:03:05 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_bool	is_integer(char *s)
 {
-	long int	value;
+	int64_t		value;
 	int			sign;
 
 	sign = 1;
@@ -24,11 +24,15 @@ static t_bool	is_integer(char *s)
 		s++;
 	if (*s == '+' || (*s == '-' && (sign = -1)))
 		s++;
+	if (!*s)
+		return (false);
 	while (*s)
 	{
 		if (!ft_isdigit(*s))
 			return (false);
 		value = value * 10 + (*s - '0');
+		if (value > 2147483648)
+			return (false);
 		s++;
 	}
 	if ((value * sign) <= INT_MAX && (value * sign) >= INT_MIN)
@@ -39,7 +43,7 @@ static t_bool	is_integer(char *s)
 static int		add_element(t_stack *tmp, int n)
 {
 	t_elem		*new;
-	
+
 	if (!(new = (t_elem*)malloc(sizeof(t_elem))))
 		return (0);
 	new->num = n;
@@ -59,7 +63,7 @@ static void		parse_arg(t_data *d, char *av)
 	char		**str;
 	int			i;
 	int			n;
-	
+
 	i = 0;
 	n = 0;
 	str = ft_strsplit((const char *)av, ' ');
@@ -79,7 +83,7 @@ static void		parse_arg(t_data *d, char *av)
 void			validate(t_data *d, char **av)
 {
 	av++;
-	while(*av)
+	while (*av)
 	{
 		parse_arg(d, *av);
 		av++;

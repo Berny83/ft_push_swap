@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 21:40:33 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 21:42:04 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:24:43 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_data			initiate(void)
 t_bool			initiate_chunk(t_stack *tmp)
 {
 	t_chunk		*new;
-	
+
 	if (!tmp->ch || tmp->ch->size)
 	{
 		if (!(new = (t_chunk *)malloc(sizeof(t_chunk))))

@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 19:52:13 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 22:33:58 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 19:22:16 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,40 @@ static char		check_stack(int n)
 		return ('f');
 }
 
-static void		get_commands(t_data *d)
+static int		get_commands(t_data *d)
 {
 	int			o;
-	char 		*str;
-	
+	int			i;
+	char		*str;
+
 	o = 0;
+	i = 0;
 	while (get_next_line(STDIN_FILENO, &str))
 	{
 		if ((o = check_operation(d, str)) == 0)
-		{	
+		{
 			free(str);
-			return ;
+			return (i);
 		}
-		d->oper(d, check_stack(o));
+		i += d->oper(d, check_stack(o));
 		free(str);
 	}
+	return (1);
 }
 
 int				main(int ac, char **av)
 {
 	t_data		d;
-	
+	int			n;
+
+	n = 0;
 	if (ac >= 2)
 	{
 		d = initiate();
 		validate(&d, av);
-		get_commands(&d);
+		n = get_commands(&d);
+		if (!n)
+			ft_exit(&d, EXIT_FAILURE);
 		(is_sorted(&d)) ? ft_putendl("OK") :\
 		ft_putendl("KO");
 		clean(&d);

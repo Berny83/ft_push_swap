@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 18:05:34 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 23:55:21 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:48:06 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define ERR "Error\n"
 
-typedef struct 		s_elem
+typedef struct		s_elem
 {
 	long int		num;
 	struct s_elem	*next;
@@ -32,7 +32,7 @@ typedef struct		s_chunk
 	struct s_chunk	*next;
 }					t_chunk;
 
-typedef struct 		s_stack
+typedef struct		s_stack
 {
 	int				size;
 	t_elem			*first;
@@ -52,6 +52,6 @@ typedef enum
 {
 	false,
 	true
-}					t_bool;
+}	t_bool;
 
 #endif

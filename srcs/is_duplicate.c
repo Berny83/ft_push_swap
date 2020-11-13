@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:57:42 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 20:52:02 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:25:40 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_bool	is_duplicate(t_data *d)
 			return (true);
 		i++;
 	}
-	return(false);
+	return (false);
 }
 
 static void		sorting(t_data *d)
