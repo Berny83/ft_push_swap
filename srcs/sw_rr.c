@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:55:19 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 23:41:02 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 10:46:35 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ static void		reverse(t_stack *tmp)
 		tmp->first = tmp->first->next;
 		tmp->last->next = NULL;
 		tmp->first->prev = NULL;
-		// tmp->last->next = tmp->first;
-		// tmp->last->next->prev = tmp->last;
-		// tmp->first = tmp->first->next;
-		// tmp->last->next->next = NULL;
-		// tmp->first->prev = NULL;
-		// tmp->last = tmp->last->next;
 	}
 }
 

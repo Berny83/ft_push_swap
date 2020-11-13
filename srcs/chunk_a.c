@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 21:02:30 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/13 00:10:38 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 11:49:07 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,36 @@ static void	middle_chunk_b(t_chunk *b, t_chunk *a, t_elem **elems)
 {
 	b->split = a->split; //4 //3 //2 //1
 	b->size = a->size / b->split; //20 //20 //20 //20
-	b->pos_median = a->pos_median - (b->size / 2); //10 //20 //30 //40
-	b->val_median = elems[b->pos_median]->num;  //elems[10] = 21//elems[20] = 40 //60
+	if (a->lll == 0)
+	{
+		b->pos_median = a->pos_median - (b->size / 2); //10 //20 //30 //40
+		b->val_median = elems[b->pos_median]->num;  //elems[10] = 21//elems[20] = 40 //60
+	}
 }
 
-void		new_a_chunk(t_chunk *a, t_elem **elems)
+void		new_a_chunk(t_chunk *a)
 {
-	a->pos_median += (a->size / a->split); // 40 + 60/3=60//100 скорее всего еще минус 1
+	// if (a->lll)
+	// {
+	// 	a->pos_median += (a->size / a->split);
+	// 	a->val_median = elems[a->pos_median]->num;
+	// 	a->val_median++;
+	// } //elems[40] = 40 //elems[60] = 60
+	a->lll = 1;
 	a->size -= (a->size / a->split); //80 //60 //40 //20
 	a->split--; //4 //3 //2
-	a->lll = 1;
+}
+
+void		redo_chunks(t_chunk *a, t_chunk *b, t_elem **elems)
+{
+	a->pos_median += b->size; // 40 + 60/3=60//100 скорее всего еще минус 1
 	if (a->lll)
 	{
-		a->val_median = elems[a->pos_median]->num;
-		// a->val_median++;
+		a->val_median = elems[a->pos_median - 1]->num;
+		a->val_median++;
 	} //elems[40] = 40 //elems[60] = 60
+	b->pos_median = a->pos_median - (b->size / 2); //10 //20 //30 //40
+	b->val_median = elems[b->pos_median]->num;  //elems[10] = 21//elems[20] = 40 //60
 }
 
 int			find_moves_a(t_stack *tmp, int median, int border)
@@ -118,6 +133,8 @@ void		solve_quarters_a(t_data *d, int border)
 
 	i = 0;
 	middle_chunk_b(d->b.ch, d->a.ch, d->elems);
+	if (d->a.ch->lll)
+		redo_chunks(d->a.ch, d->b.ch, d->elems);
 	while (i < d->b.ch->size)
 	{
 		if (find_moves_a(&d->a, d->a.ch->val_median, border))

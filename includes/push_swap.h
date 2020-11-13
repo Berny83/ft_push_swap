@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 18:01:02 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 21:36:53 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 11:33:37 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void		sort_100_500(t_data *d);
 t_bool		is_sorted(t_data *d);
 
 t_bool		sorted_chunk(t_data *d);
-void		new_a_chunk(t_chunk *a, t_elem **elems);
+void		new_a_chunk(t_chunk *a);
+void		redo_chunks(t_chunk *a, t_chunk *b, t_elem **elems);
 t_bool		initiate_chunk(t_stack *tmp);
 void		solve_quarters_a(t_data *d, int border);
 void		solve_quarters_b(t_data *d);

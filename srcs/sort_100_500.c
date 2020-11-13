@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 15:52:25 by aagrivan          #+#    #+#             */
-/*   Updated: 2020/11/12 23:56:02 by aagrivan         ###   ########.fr       */
+/*   Updated: 2020/11/13 11:58:14 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 static int		size_chunk(int size)
 {
-	if (size <= 20)
+	if (size <= 30)
 		return (2);
 	else if (size <= 100)
 		return (5);
 	else
-		return (11);
-}
+		return (10);
+}//500-9-10
 
 static void		a_chunk(t_stack *a, t_elem **elems, int div)
 {
@@ -67,9 +67,12 @@ void			sort_100_500(t_data *d)
 			d->a.ch->size = 0;
 		else
 		{
-			solve_quarters_a(d, border);
-			border = d->a.ch->val_median;
-			new_a_chunk(d->a.ch, d->elems);
+			while (d->a.size != 0)
+			{
+				solve_quarters_a(d, border);
+				border = d->a.ch->val_median;
+				new_a_chunk(d->a.ch);
+			}
 		}
 		if (d->b.size != 0)
 			solve_quarters_b(d);
