@@ -12,7 +12,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/push_swap",
 			// "args": ["-l", "-r", "-R", "rt"], "../FDF/.git/refs/tags"
-			"args": ["4 67 3 87 23"],
+			"args": ["2 3 1 5 6"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
